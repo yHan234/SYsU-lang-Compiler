@@ -1,0 +1,9 @@
+.vscode
+.antlr
+__pycache__
+build
+
+third-party/antlr/*
+!third-party/antlr/install.sh
+third-party/llvm/*
+!third-party/llvm/install.sh

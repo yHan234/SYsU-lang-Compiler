@@ -1,0 +1,1 @@
+java -jar antlr/antlr-4.13.1-complete.jar -Dlanguage=Cpp front-end/antlr/C.g4 -no-visitor -no-listener
