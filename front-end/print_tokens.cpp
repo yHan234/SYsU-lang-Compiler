@@ -126,9 +126,9 @@ const char *const tokenType2ClangStr[] = {
     "unknown",          // 120
 };
 
-auto parse_linemarkers(const std::string &s)
+auto parse_linemarker(const std::string &s)
 {
-    struct LineMarkers
+    struct LineMarker
     {
         size_t linenum;
         std::string filename;
@@ -136,7 +136,7 @@ auto parse_linemarkers(const std::string &s)
     };
 
     char pound;
-    LineMarkers lm;
+    LineMarker lm;
     std::istringstream iss(s);
     iss >> pound >> lm.linenum >> lm.filename;
     lm.filename = lm.filename.substr(1, lm.filename.length() - 2); // 去除双引号
@@ -182,7 +182,7 @@ void print_tokens_clang(antlr4::CommonTokenStream &tokens, std::ofstream &outFil
     {
         if (token->getType() == 115) // Directive
         {
-            auto lm = parse_linemarkers(token->getText());
+            auto lm = parse_linemarker(token->getText());
             line = lm.linenum;
             curFileName = lm.filename;
 
@@ -254,7 +254,7 @@ void print_tokens_antlr(antlr4::CommonTokenStream &tokens, std::ofstream &outFil
     {
         if (token->getType() == 115) // Directive
         {
-            auto lm = parse_linemarkers(token->getText());
+            auto lm = parse_linemarker(token->getText());
             line = lm.linenum;
             curFileName = lm.filename;
 
