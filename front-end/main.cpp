@@ -1,58 +1,8 @@
 #include <fstream>
 #include <iostream>
-#include <unordered_map>
 
 #include "antlr/CLexer.h"
-
-std::unordered_map<std::string, std::string> tokenTypeMapping = {
-    {"Int", "int"},
-    {"Identifier", "identifier"},
-    {"LeftParen", "l_paren"},
-    {"RightParen", "r_paren"},
-    {"RightBrace", "r_brace"},
-    {"LeftBrace", "l_brace"},
-    {"LeftBracket", "l_square"},
-    {"RightBracket", "r_square"},
-    {"Constant", "numeric_constant"},
-    {"Return", "return"},
-    {"Semi", "semi"},
-    {"EOF", "eof"},
-    {"Equal", "equal"},
-    {"Plus", "plus"},
-    {"Comma", "comma"},
-
-    // 在这里继续添加其他映射
-};
-
-void print_token(const antlr4::Token *token, const antlr4::CommonTokenStream &tokens, std::ofstream &outFile,
-                 const antlr4::Lexer &lexer)
-{
-    auto &vocabulary = lexer.getVocabulary();
-
-    auto tokenTypeName = std::string(vocabulary.getSymbolicName(token->getType()));
-
-    if (tokenTypeName.empty())
-        tokenTypeName = "<UNKNOWN>"; // 处理可能的空字符串情况
-
-    if (tokenTypeMapping.find(tokenTypeName) != tokenTypeMapping.end())
-    {
-        tokenTypeName = tokenTypeMapping[tokenTypeName];
-    }
-    std::string locInfo = " Loc=<0:0>";
-
-    bool startOfLine = false;
-    bool leadingSpace = false;
-
-    if (token->getText() != "<EOF>")
-        outFile << tokenTypeName << " '" << token->getText() << "'";
-    else
-        outFile << tokenTypeName << " '" << "'";
-    if (startOfLine)
-        outFile << "\t [StartOfLine]";
-    if (leadingSpace)
-        outFile << " [LeadingSpace]";
-    outFile << locInfo << std::endl;
-}
+#include "print_tokens.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -86,8 +36,5 @@ int main(int argc, char *argv[])
     antlr4::CommonTokenStream tokens(&lexer);
     tokens.fill();
 
-    for (auto &&token : tokens.getTokens())
-    {
-        print_token(token, tokens, outFile, lexer);
-    }
+    print_tokens_clang(tokens, outFile);
 }

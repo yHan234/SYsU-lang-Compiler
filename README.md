@@ -15,7 +15,13 @@
 ## TODO
 
 * [x] task0: Init
-* [ ] task1: Lexer
+* [x] task1: Lexer
 * [ ] task2: Parser
 * [ ] task3: LLVM IR
-* [ ] task4: Optimize
+* [ ] task4: Optimizer
+
+## 笔记
+
+### 预处理器在源文件开头添加的 `# 1 "<built-in>" 1` 这类语句是什么？
+
+[linemarkers](https://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html)
