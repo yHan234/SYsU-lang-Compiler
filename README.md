@@ -6,7 +6,9 @@
 
 ## 为什么选择 SYsU-lang
 
-因为有详细的[实验文档](https://arcsysu.github.io/SYsU-lang2/)和本地测试。
+有详细的[实验文档](https://arcsysu.github.io/SYsU-lang2/)和[本地测试](https://github.com/arcsysu/SYsU-lang2/tree/master/test)。
+
+直接提供了[抽象语义图代码](https://github.com/arcsysu/SYsU-lang2/tree/master/task/2/common)，可以专心于编写 IR 间的转换，而不是 AST/ASG 等数据结构的设计。
 
 ## 为什么使用 ANTLR
 
@@ -22,6 +24,5 @@
 
 ## 笔记
 
-### 预处理器在源文件开头添加的 `# 1 "<built-in>" 1` 这类语句是什么？
-
-[linemarkers](https://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html)
+* [顾宇浩的实验设计手册](https://github.com/arcsysu/SYsU-lang2/tree/master/docs/gyh-manual)
+* 预处理器在源文件开头添加的 `# 1 "<built-in>" 1` 这类语句是什么？[linemarkers](https://gcc.gnu.org/onlinedocs/cpp/Preprocessor-Output.html)
