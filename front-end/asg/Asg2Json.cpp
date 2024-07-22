@@ -183,7 +183,7 @@ json::Object Asg2Json::operator()(Expr *obj)
     else if (auto p = obj->dcst<InitListExpr>())
         ret = std::move(self(p));
 
-    else if (auto p = obj->dcst<ImplicitInitExpr>())
+    else if (auto p = obj->dcst<EmptyInitExpr>())
         ret = std::move(self(p));
 
     else if (auto p = obj->dcst<ImplicitCastExpr>())
@@ -471,7 +471,7 @@ json::Object Asg2Json::operator()(InitListExpr *obj)
     return ret;
 }
 
-json::Object Asg2Json::operator()(ImplicitInitExpr *obj)
+json::Object Asg2Json::operator()(EmptyInitExpr *obj)
 {
     json::Object ret;
     Obj::Walked guard(obj);
