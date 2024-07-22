@@ -2,7 +2,8 @@
 set(TASK1_LOG_LEVEL 3)
 
 # 是否在实验二复活，ON或OFF
-set(TASK2_REVIVE ON)
+# 由于没有加入实验一的输出（Token Stream）对应的 Parser，暂不启用实验二复活
+set(TASK2_REVIVE OFF)
 # 实验二的日志级别，级别从低到高为0-3
 set(TASK2_LOG_LEVEL 3)
 

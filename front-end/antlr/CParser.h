@@ -588,8 +588,8 @@ public:
     DeclarationContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     DeclarationSpecifiersContext *declarationSpecifiers();
-    antlr4::tree::TerminalNode *Semi();
     InitDeclaratorListContext *initDeclaratorList();
+    antlr4::tree::TerminalNode *Semi();
     StaticAssertDeclarationContext *staticAssertDeclaration();
 
    
@@ -1188,8 +1188,8 @@ public:
     virtual size_t getRuleIndex() const override;
     AssignmentExpressionContext *assignmentExpression();
     antlr4::tree::TerminalNode *LeftBrace();
-    InitializerListContext *initializerList();
     antlr4::tree::TerminalNode *RightBrace();
+    InitializerListContext *initializerList();
     antlr4::tree::TerminalNode *Comma();
 
    

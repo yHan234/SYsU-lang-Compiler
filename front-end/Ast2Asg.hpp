@@ -39,7 +39,29 @@ class Ast2Asg
 
     Expr *operator()(ast::AssignmentExpressionContext *ctx);
 
+    Expr *operator()(ast::ConditionalExpressionContext *ctx);
+
+    Expr *operator()(ast::LogicalOrExpressionContext *ctx);
+
+    Expr *operator()(ast::LogicalAndExpressionContext *ctx);
+
+    Expr *operator()(ast::InclusiveOrExpressionContext *ctx);
+
+    Expr *operator()(ast::ExclusiveOrExpressionContext *ctx);
+
+    Expr *operator()(ast::AndExpressionContext *ctx);
+
+    Expr *operator()(ast::EqualityExpressionContext *ctx);
+
+    Expr *operator()(ast::RelationalExpressionContext *ctx);
+
+    Expr *operator()(ast::ShiftExpressionContext *ctx);
+
     Expr *operator()(ast::AdditiveExpressionContext *ctx);
+
+    Expr *operator()(ast::MultiplicativeExpressionContext *ctx);
+
+    Expr *operator()(ast::CastExpressionContext *ctx);
 
     Expr *operator()(ast::UnaryExpressionContext *ctx);
 
@@ -59,6 +81,10 @@ class Ast2Asg
 
     Stmt *operator()(ast::ExpressionStatementContext *ctx);
 
+    Stmt *operator()(ast::SelectionStatementContext *ctx);
+
+    Stmt *operator()(ast::IterationStatementContext *ctx);
+
     Stmt *operator()(ast::JumpStatementContext *ctx);
 
     //============================================================================
@@ -76,6 +102,7 @@ class Ast2Asg
     Symtbl *mSymtbl{nullptr};
 
     FunctionDecl *mCurrentFunc{nullptr};
+    Stmt *mCurrentIter{nullptr};
 
     template <typename T, typename... Args> T *make(Args... args)
     {

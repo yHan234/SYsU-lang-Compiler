@@ -167,7 +167,7 @@ constantExpression
     ;
 
 declaration
-    : declarationSpecifiers initDeclaratorList? ';'
+    : declarationSpecifiers initDeclaratorList ';'
     | staticAssertDeclaration
     ;
 
@@ -404,7 +404,7 @@ typedefName
 
 initializer
     : assignmentExpression
-    | '{' initializerList ','? '}'
+    | '{' (initializerList ','?)? '}'
     ;
 
 initializerList
