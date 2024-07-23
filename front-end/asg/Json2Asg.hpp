@@ -72,7 +72,7 @@ class Json2Asg
 
     asg::InitListExpr *init_list_expr(const llvm::json::Object &jobj);
 
-    asg::EmptyInitExpr *implicit_init_expr(const llvm::json::Object &jobj);
+    asg::EmptyInitExpr *empty_init_expr(const llvm::json::Object &jobj);
 
     asg::ImplicitCastExpr *implicit_cast_expr(const llvm::json::Object &jobj);
 
