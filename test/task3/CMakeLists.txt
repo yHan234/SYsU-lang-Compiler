@@ -60,7 +60,7 @@ if(TASK3_REVIVE)
     set(_output_dir ${CMAKE_CURRENT_BINARY_DIR}/${_case})
     file(MAKE_DIRECTORY ${_output_dir})
     add_test(NAME task3/${_case}
-             COMMAND task3 ${_task2_out}/${_case}/answer.json
+             COMMAND sysuc ${_task2_out}/${_case}/answer.json
                      ${_output_dir}/output.ll)
     add_test(
       NAME test3/${_case}
@@ -80,7 +80,7 @@ else()
   foreach(_case ${_task3_cases})
     set(_output_dir ${CMAKE_CURRENT_BINARY_DIR}/${_case})
     file(MAKE_DIRECTORY ${_output_dir})
-    add_test(NAME task3/${_case} COMMAND task3 ${_task0_out}/${_case}
+    add_test(NAME task3/${_case} COMMAND sysuc ${_task0_out}/${_case}
                                          ${_output_dir}/output.ll)
     add_test(
       NAME test3/${_case}

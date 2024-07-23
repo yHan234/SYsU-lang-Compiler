@@ -5,7 +5,7 @@ include_directories(${antlr4-runtime-include_DIR})
 
 find_package(LLVM 18.1 REQUIRED)
 llvm_map_components_to_libnames(LLVM_LIBS core support transformutils irreader passes)
-include_directories(${llvm-include_DIR})
+include_directories(${LLVM_INCLUDE_DIRS})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
