@@ -664,7 +664,7 @@ Expr *Typing::infer_init(Expr *init, const Type *to)
     // https://zh.cppreference.com/w/c/language/scalar_initialization
     if (to->texp == nullptr)
     {
-        if (auto p = init->dcst<EmptyInitExpr>())
+        if (auto p = init->dcst<ImplicitInitExpr>())
         {
             p->type = to;
             return p;
@@ -676,8 +676,8 @@ Expr *Typing::infer_init(Expr *init, const Type *to)
             if (!p->list.empty())
                 return infer_init(p->list[0], to);
 
-            // 空初始化列表即为 EmptyInitExpr。
-            auto ret = make<EmptyInitExpr>();
+            // 空初始化列表即为 ImplicitInitExpr。
+            auto ret = make<ImplicitInitExpr>();
             ret->type = to;
             return ret;
         }
@@ -691,7 +691,7 @@ Expr *Typing::infer_init(Expr *init, const Type *to)
     // https://zh.cppreference.com/w/c/language/array_initialization
     if (auto arrTy = to->texp->dcst<ArrayType>())
     {
-        if (auto p = init->dcst<EmptyInitExpr>())
+        if (auto p = init->dcst<ImplicitInitExpr>())
         {
             p->type = to;
             return p;

@@ -93,7 +93,7 @@ Expr *Json2Asg::expr(const llvm::json::Object &jobj)
         ret = init_list_expr(jobj);
 
     else if (kind == "ImplicitValueInitExpr")
-        ret = empty_init_expr(jobj);
+        ret = implicit_init_expr(jobj);
 
     else if (kind == "ArraySubscriptExpr")
         ret = binary_expr(jobj);
@@ -295,11 +295,11 @@ InitListExpr *Json2Asg::init_list_expr(const llvm::json::Object &jobj)
     return initListExpr;
 }
 
-EmptyInitExpr *Json2Asg::empty_init_expr(const llvm::json::Object &jobj)
+ImplicitInitExpr *Json2Asg::implicit_init_expr(const llvm::json::Object &jobj)
 {
-    auto emptyInitExpr = make<EmptyInitExpr>();
-    emptyInitExpr->type = getty(jobj);
-    return emptyInitExpr;
+    auto implicitInitExpr = make<ImplicitInitExpr>();
+    implicitInitExpr->type = getty(jobj);
+    return implicitInitExpr;
 }
 
 ImplicitCastExpr *Json2Asg::implicit_cast_expr(const llvm::json::Object &jobj)

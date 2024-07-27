@@ -42,7 +42,7 @@ class Asg2Json
 
     json::Object operator()(InitListExpr *obj);
 
-    json::Object operator()(EmptyInitExpr *obj);
+    json::Object operator()(ImplicitInitExpr *obj);
 
     json::Object operator()(ImplicitCastExpr *obj);
 

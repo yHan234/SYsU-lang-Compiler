@@ -623,7 +623,7 @@ Expr *Ast2Asg::operator()(ast::InitializerContext *ctx)
     }
     else
     {
-        return make<EmptyInitExpr>();
+        return make<ImplicitInitExpr>();
     }
 
     ABORT();

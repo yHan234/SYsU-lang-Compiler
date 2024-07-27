@@ -95,7 +95,7 @@ llvm::Value *EmitIR::operator()(Expr *obj)
     if (auto p = obj->dcst<InitListExpr>())
         ABORT();
 
-    if (auto p = obj->dcst<EmptyInitExpr>())
+    if (auto p = obj->dcst<ImplicitInitExpr>())
         return self(p);
 
     if (auto p = obj->dcst<ImplicitCastExpr>())
@@ -577,7 +577,7 @@ void EmitIR::var_init(llvm::Value *var, Expr *obj)
     {
         bool implicitInit = false;
 
-        if (auto item = p->list[0]->dcst<EmptyInitExpr>())
+        if (auto item = p->list[0]->dcst<ImplicitInitExpr>())
         {
             implicitInit = true;
 

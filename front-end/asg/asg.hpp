@@ -246,7 +246,7 @@ struct InitListExpr : Expr
     void __mark__(Mark mark) override;
 };
 
-struct EmptyInitExpr : Expr
+struct ImplicitInitExpr : Expr
 {
 };
 
