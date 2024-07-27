@@ -36,7 +36,17 @@ class EmitIR
 
     llvm::Constant *operator()(asg::IntegerLiteral *obj);
 
-    // TODO: 添加表达式处理相关声明
+    llvm::Value *operator()(asg::DeclRefExpr *obj);
+
+    llvm::Value *operator()(asg::ParenExpr *obj);
+
+    llvm::Value *operator()(asg::UnaryExpr *obj);
+
+    llvm::Value *operator()(asg::BinaryExpr *obj);
+
+    llvm::Value *operator()(asg::CallExpr *obj);
+
+    llvm::Value *operator()(asg::ImplicitCastExpr *obj);
 
     //============================================================================
     // 语句
@@ -44,11 +54,21 @@ class EmitIR
 
     void operator()(asg::Stmt *obj);
 
+    void operator()(asg::DeclStmt *obj);
+
+    void operator()(asg::ExprStmt *obj);
+
     void operator()(asg::CompoundStmt *obj);
 
-    void operator()(asg::ReturnStmt *obj);
+    void operator()(asg::IfStmt *obj);
 
-    // TODO: 添加语句处理相关声明
+    void operator()(asg::WhileStmt *obj);
+
+    void operator()(asg::BreakStmt *obj);
+
+    void operator()(asg::ContinueStmt *obj);
+
+    void operator()(asg::ReturnStmt *obj);
 
     //============================================================================
     // 声明
@@ -58,5 +78,13 @@ class EmitIR
 
     void operator()(asg::FunctionDecl *obj);
 
-    // TODO: 添加声明处理相关声明
+    void operator()(asg::VarDecl *obj, bool global);
+
+    //============================================================================
+    // Utils
+    //============================================================================
+
+    llvm::Value *cast_to_i1(llvm::Value *i);
+
+    void var_init(llvm::Value *var, asg::Expr *obj);
 };

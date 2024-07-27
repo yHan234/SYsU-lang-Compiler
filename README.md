@@ -9,12 +9,13 @@
 * [x] task0: Init
 * [x] task1: Lexer
 * [x] task2: Parser
-* [ ] task3: LLVM IR
+* [x] task3: LLVM IR
 * [ ] task4: Optimizer
 
 ### TODO
 
 * 为 Parser 的输出的 JSON 添加更多信息。
+* 整合各个 task 的 main 函数，做 argparse。
 
 ## 笔记
 
