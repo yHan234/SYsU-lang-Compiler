@@ -2,16 +2,15 @@
 
 这是一个用于学习编译原理和 LLVM 的项目。
 
-本项目基于 [SYsU-lang2](https://github.com/arcsysu/SYsU-lang2) 的实验框架进行了修改，每个任务在上一个任务的代码上继续编写。
+本项目基于 [SYsU-lang2 实验框架](https://github.com/arcsysu/SYsU-lang2) 修改，每个任务在上一个任务的代码上继续编写。
 
 ## 进度
 
 ### 前端
 
-* [x] task0: Init
-* [x] task1: Lexer
-* [x] task2: Parser
-* [x] task3: LLVM IR
+1. [x] Lexer
+2. [x] Parser
+3. [x] LLVM IR
 
 #### TODO
 
@@ -20,7 +19,7 @@
 
 ### 优化
 
-* [ ] task4: Optimizer
+* [ ] Optimizer
 
 ### 后端
 
