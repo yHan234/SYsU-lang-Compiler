@@ -3,11 +3,8 @@ project (sysuc)
 find_package(antlr4-runtime 4.13 REQUIRED)
 include_directories(${antlr4-runtime-include_DIR})
 
-find_package(LLVM 18.1 REQUIRED)
-llvm_map_components_to_libnames(LLVM_LIBS core support transformutils irreader passes)
-include_directories(${LLVM_INCLUDE_DIRS})
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${LLVM_INCLUDE_DIRS})
 
 add_subdirectory(antlr) # lexer parser
 add_subdirectory(asg)

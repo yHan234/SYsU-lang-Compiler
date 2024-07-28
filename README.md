@@ -6,16 +6,25 @@
 
 ## 进度
 
+### 前端
+
 * [x] task0: Init
 * [x] task1: Lexer
 * [x] task2: Parser
 * [x] task3: LLVM IR
-* [ ] task4: Optimizer
 
-### TODO
+#### TODO
 
 * 为 Parser 的输出的 JSON 添加更多信息。
 * 整合各个 task 的 main 函数，做 argparse。
+
+### 优化
+
+* [ ] task4: Optimizer
+
+### 后端
+
+* [ ] RISC-V
 
 ## 笔记
 

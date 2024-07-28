@@ -49,7 +49,7 @@ add_custom_target(
   USES_TERMINAL
   SOURCES score.py)
 
-add_dependencies(task4-score sysuc task4-answer test-rtlib)
+add_dependencies(task4-score optim task4-answer test-rtlib)
 
 # 为每个测例创建一个测试
 if(TASK4_REVIVE)
@@ -59,7 +59,7 @@ if(TASK4_REVIVE)
   foreach(_case ${_task4_cases})
     set(_output_dir ${CMAKE_CURRENT_BINARY_DIR}/${_case})
     file(MAKE_DIRECTORY ${_output_dir})
-    add_test(NAME task4/${_case} COMMAND task4 ${_task3_out}/${_case}/answer.ll
+    add_test(NAME task4/${_case} COMMAND optim ${_task3_out}/${_case}/answer.ll
                                          ${_output_dir}/output.ll)
     add_test(
       NAME test4/${_case}
@@ -79,7 +79,7 @@ else()
   foreach(_case ${_task4_cases})
     set(_output_dir ${CMAKE_CURRENT_BINARY_DIR}/${_case})
     file(MAKE_DIRECTORY ${_output_dir})
-    add_test(NAME task4/${_case} COMMAND task4 ${_task0_out}/${_case}
+    add_test(NAME task4/${_case} COMMAND optim ${_task0_out}/${_case}
                                          ${_output_dir}/output.ll)
     add_test(
       NAME test4/${_case}
