@@ -20,13 +20,15 @@ mv cmake-18.1.8.src cmake
 
 mkdir build install
 cmake llvm -B build -G Ninja\
-  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_INSTALL_PREFIX=$(realpath install) \
   -DLLVM_ENABLE_PROJECTS="clang" \
-  -DLLVM_TARGETS_TO_BUILD="X86" \
+  -DLLVM_TARGETS_TO_BUILD="X86;RISCV" \
   -DLLVM_USE_LINKER=lld \
   -DLLVM_INCLUDE_BENCHMARKS=OFF \
   -DLLVM_INCLUDE_EXAMPLES=OFF \
   -DLLVM_INCLUDE_TESTS=OFF \
-  -DLLVM_PARALLEL_COMPILE_JOBS=2
+  # -DLLVM_PARALLEL_COMPILE_JOBS=2 \
+  # -DLLVM_PARALLEL_LINK_JOBS=2 \
+
 cmake --build build --target install
