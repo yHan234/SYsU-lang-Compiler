@@ -4,12 +4,12 @@
 #include <llvm/IR/PassManager.h>
 #include <llvm/Support/raw_ostream.h>
 
-class ConstantFolding : public llvm::PassInfoMixin<ConstantFolding> {
+class StrengthReduction : public llvm::PassInfoMixin<StrengthReduction> {
 public:
-  explicit ConstantFolding(llvm::raw_ostream &out) : mOut(out) {}
+  explicit StrengthReduction(llvm::raw_ostream &out) : mOut(out) {}
 
   llvm::PreservedAnalyses run(llvm::Function &Func,
-                              llvm::FunctionAnalysisManager &FAM);
+                              llvm::FunctionAnalysisManager &AM);
 
 private:
   llvm::raw_ostream &mOut;

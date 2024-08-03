@@ -17,9 +17,32 @@
 * 为 Parser 的输出的 JSON 添加更多信息。
 * 整合各个 task 的 main 函数，做 argparse。
 
-### 优化
+### 优化器
 
-* [ ] Optimizer
+* 数据流优化
+  * [ ] 常量传播 (Constant Propagation)
+  * [x] 常量折叠 (Constant Folding)
+  * [ ] 死代码消除 (Dead Code Elimination)
+  * [ ] 公共子表达式消除 (Common Subexpression Elimination)
+  * [ ] 指令合并 (Instruction Combining)
+* 控制流优化
+  * [ ] 循环无关变量移动 (Loop-invariant Code Motion)
+  * [ ] 循环展开 (Loop Unrolling)
+  * [ ] 控制流简化
+* 指令级优化
+  * [x] Mem2Reg
+    * [ ] 直接从 LLVM 复制了代码，TODO：阅读并理解这些代码
+  * 强度削弱 (Strength Reduction)
+    * [x] `x*n  -> x<<log2(n) (n为2的幂次常数)`
+    * [x] `x%n -> x-((x/n)<<log2(n)) (n为2的幂次常数)`
+  * [ ] 代数恒等式 (Algebraic Identities)
+* 模块级优化
+  * [ ] 函数内联
+* 访存优化
+  * [ ] 死存储消除 (Dead Storage Elimination)
+* 高级优化
+  * [ ] 自动向量化
+  * [ ] 自动并行
 
 ### 后端
 

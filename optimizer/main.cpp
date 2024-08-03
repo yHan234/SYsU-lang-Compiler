@@ -6,38 +6,39 @@
 #include <llvm/Passes/PassBuilder.h>
 #include <llvm/Support/raw_ostream.h>
 
-#include "ConstantFolding.hpp"
 #include "Mem2Reg.hpp"
-#include "StaticCallCounter.hpp"
-#include "StaticCallCounterPrinter.hpp"
+#include "ConstantFolding.hpp"
+#include "StrengthReduction.hpp"
 
 void opt(llvm::Module &mod) {
   using namespace llvm;
 
   // 定义分析pass的管理器
-  LoopAnalysisManager lam;
-  FunctionAnalysisManager fam;
-  CGSCCAnalysisManager cgam;
-  ModuleAnalysisManager mam;
-  ModulePassManager mpm;
+  LoopAnalysisManager LAM;
+  FunctionAnalysisManager FAM;
+  CGSCCAnalysisManager CGAM;
+  ModuleAnalysisManager MAM;
 
   // 注册分析pass的管理器
-  PassBuilder pb;
-  pb.registerModuleAnalyses(mam);
-  pb.registerCGSCCAnalyses(cgam);
-  pb.registerFunctionAnalyses(fam);
-  pb.registerLoopAnalyses(lam);
-  pb.crossRegisterProxies(lam, fam, cgam, mam);
+  PassBuilder PB;
+  PB.registerModuleAnalyses(MAM);
+  PB.registerCGSCCAnalyses(CGAM);
+  PB.registerFunctionAnalyses(FAM);
+  PB.registerLoopAnalyses(LAM);
+  PB.crossRegisterProxies(LAM, FAM, CGAM, MAM);
 
-  // 添加分析pass到管理器中
-  mam.registerPass([]() { return StaticCallCounter(); });
+  // 定义优化pass的管理器
+  ModulePassManager MPM;
+  FunctionPassManager FPM;
 
   // 添加优化pass到管理器中
-  mpm.addPass(StaticCallCounterPrinter(llvm::errs()));
-  mpm.addPass(Mem2Reg());
-  mpm.addPass(ConstantFolding(llvm::errs()));
+  FPM.addPass(Mem2Reg());
+  FPM.addPass(ConstantFolding(errs()));
+  FPM.addPass(StrengthReduction(errs()));
+
   // 运行优化pass
-  mpm.run(mod, mam);
+  MPM.addPass(createModuleToFunctionPassAdaptor(std::move(FPM)));
+  MPM.run(mod, MAM);
 }
 
 int main(int argc, char **argv) {

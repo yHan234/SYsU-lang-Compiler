@@ -13,8 +13,6 @@
 
 class Mem2Reg : public llvm::PassInfoMixin<Mem2Reg> {
 public:
-  Mem2Reg() {}
-
-  llvm::PreservedAnalyses run(llvm::Module &mod,
-                              llvm::ModuleAnalysisManager &mam);
+  llvm::PreservedAnalyses run(llvm::Function &F,
+                              llvm::FunctionAnalysisManager &AM);
 };
